@@ -1,425 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<!--
--->
-<!--
--->
-<!doctype html>
-<!--  -->
-<!--
-    
-    
-		
-		  -->
-<html ng-app="siteGeneratorStaticsConsumerApp" lang="en">
 <head>
+
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Wix ADI</title>
-  <meta name="description" content="Wix Artificial Design Intelligence Site Builder">
-  <meta name="viewport" content="width=device-width">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="referrer" content="origin">
-  
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-MDD5C4');</script>
-  <!-- End Google Tag Manager -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-  <script type="text/javascript">
-    console && console.log && console.log('ADI version 2.960.9');
-  </script>
+  <title>Agency - Start Bootstrap Theme</title>
 
-  <script type="text/javascript">
-    // 
-    var ADI = {};
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    ADI.messageQueue = [];
-    ADI.messagesSaver = function(event) {
-      ADI.messageQueue.push(event);
-    };
-    window.addEventListener('message', ADI.messagesSaver);
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
-    (function (window) {
-      var guidRegex = '[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}';
-      var siteIdRegex = new RegExp('/builder/story/(' + guidRegex + '):(' + guidRegex + ')', 'i');
-      ADI.siteId = siteIdRegex.exec(window.location.hash);
-    })(window);
+  <!-- Custom styles for this template -->
+  <link href="css/agency.min.css" rel="stylesheet">
 
-    /*  */
-
-     // fedops
-    (function () {
-      if (!ADI.siteId) {
-        return;
-      }
-
-      var appName = 'site-generator-statics-consumer';
-      window.fedops = window.fedops || {};
-      window.fedops.apps = window.fedops.apps || {};
-      window.fedops.apps[appName] = {startLoadTime: performance && performance.now && performance.now()};
-      window.fedops = window.fedops || {};
-      window.fedops.sessionId = window.localStorage.getItem('fedops.logger.sessionId') || 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-      });
-      (new Image()).src = '//frog.wix.com/fed?appName=' + appName + '&src=72&evid=14&session_id=' + window.fedops.sessionId;
-    })();
-
-    ADI.getTimestamp = typeof performance === 'object' && typeof performance.now === 'function'
-      ? function () {return performance.now()}
-      : function () {return Date.now()};
-
-    //fire start open here
-    (function (window) {
-      if (!ADI.siteId) {
-        return;
-      }
-
-      ADI.loadStartTime = ADI.getTimestamp();
-      ADI.isTemplate = window.location.href.indexOf('templateSite=true') >= 0 || /\btemplateStoryId=/.test(window.location.search);
-
-      var instanceId = ADI.siteId[1];
-      var msid = ADI.siteId[2];
-      var loadType = ADI.isTemplate ? 'template' : 'existing%20site';
-      ADI.headlessApi = window.location.hash.indexOf('headlessApi') !== -1;
-      if (!ADI.headlessApi) {
-        (new Image()).src = '//frog.wix.com/onboarding?src=66&evid=135&origin=home' +
-            '&instanceId=' + instanceId +
-            '&msid=' + msid +
-            '&loadType=' + loadType +
-            '&esi=6683c0cf-007e-4013-bf0f-d2493e4ef520';
-
-        (new Image()).src = '//frog.wix.com/fed?appName=site-generator-statics-consumer' +
-          '&name=init-existing' +
-          '&src=72' +
-          '&evid=15' +
-          '&session_id=' + window.fedops.sessionId +
-          '&_=' + new Date().getTime();
-        // add interaction manually so later call to interactionEnded() works
-        window.fedops.apps['site-generator-statics-consumer'].interactions = window.fedops.apps['site-generator-statics-consumer'].interactions || {};
-        window.fedops.apps['site-generator-statics-consumer'].interactions['init-existing'] = {timestamp: performance && performance.now && performance.now()};
-      }
-
-      (new Image()).src = '//frog.wix.com/onboarding?src=66&evid=1&origin=home' +
-              '&phaseName=pre%20init' +
-              '&subPhaseName=' +
-              '&msid=' + msid +
-              '&esi=6683c0cf-007e-4013-bf0f-d2493e4ef520' +
-              '&loadType=' + loadType +
-              '&loadTime=' + Math.round(ADI.loadStartTime);
-
-    })(window);
-    //   </script>
-
-  <script type="text/javascript">
-    ADI.getMetadata = function() {
-      return ;
-    };
-
-    ADI.getExperiments = function() {
-      return {"specs.ob.newGoogleApiKey":"true","specs.ob.mobileNoSilentInitRender":"true","specs.ob.focalPointFocusOnFaces":"true","specs.ob.legalRights2":"true","specs.ob.newListLayouts":"true","specs.abTranslate.site-generator-statics-consumer.tour.logoExtraction.step3200.title":"1","specs.ob.fixColumnStyle":"false","specs.ob.newContentManager":"true","specs.ob.loadTPAPreviewFonts":"true","specs.ob.lazyLoadThirdPartiesCss":"true","specs.ob.superRes":"true","specs.ob.textManagerUxImprovement":"true","specs.abTranslate.site-generator-statics-consumer.tour.welcome2.step2000.content":"1","specs.AdiNonPrefixMatchEnabled":"true","specs.StoryDeletionEnabled":"true","specs.ob.fixDestroyTypo":"true","specs.ob.perfDontClosePopupsOnSiteLoad":"true","specs.ob.saveMobileModel":"false","specs.logo-builder.AdiWebsiteLogo":"false","specs.ob.fixHeaderMobileSocialRender":"true","specs.ob.loadPreviewAsap":"true","specs.ob.introRedirectToServiceOffer":"true","specs.ob.sentryIntegration":"false","specs.ob.immediateLoader":"false","specs.ob.newBlogWithContent":"true","specs.CompressSnapshotData":"true","specs.abTranslate.site-generator-statics-consumer.tour.welcome2.step4000.content":"1","specs.ob.youTubeChannel":"true","specs.abTranslate.site-generator-statics-consumer.business_card.title":"1","specs.ob.biRightClick":"false","specs.ob.overrideContainerBgColor":"true","specs.ob.FullStory":"false","specs.ob.loadTemplateAsap":"true","specs.ob.dataFixerSeoKeywords":"true","specs.wos.DisplayPhotoAlbums":"true","specs.ob.introFixDefaultServicesOnSkip":"true","specs.ob.med_improveCategorySearch":"true","specs.ob.meshBlankTemplate":"true","specs.ob.noMasterNodes":"true","specs.ob.textManagerLabel":"true","specs.wos.displayEvents":"true","specs.ob.reduceErrors":"true","specs.abTranslate.site-generator-statics-consumer.tour.welcome2.complete.title":"1","specs.abTranslate.site-generator-statics-consumer.intro.select-user.title-no-results":"1","specs.ob.refactorMoveDesignKitToLss":"true","specs.media.MediaManager3Migrate":"true","specs.ob.dontWaitForFontChange":"true","specs.ob.mediaCatalog":"false","specs.ob.lessBeforeUnloadWarnings":"true","specs.ob.membersArea":"false","specs.ob.fixPublishBug":"true","specs.ob.videoUploader":"true","specs.ob.coreNewLgData":"true","specs.media.MediaManager3":"true","specs.ob.condensedPresets":"true","specs.ValidatePayloadsOnUpdate":"true","specs.ob.newIntroDesignAnon":"true","specs.ob.med_videoUploader":"false","specs.ob.renameSkipInServiceOffers":"true","specs.ob.headerLayoutPreview":"true","specs.abTranslate.site-generator-statics-consumer.intro.search-confirm.title":"1","specs.ob.mergedHeader":"true","specs.ob.wixVideo":"true","specs.ob.coreNewMobileColumns":"false","specs.ob.smallActionsSaveLess":"true","specs.ob.textManagerCms":"true","specs.ob.newAddSectionsOrder":"true","specs.RenderNewClientArtifact":"true","specs.ob.largerStage":"true","specs.ob.flagsWithoutAngular":"true","specs.ob.newPreviewMode":"true","specs.ob.preloadMetadata":"false","specs.ob.fixHeadlessResetTime":"true","specs.ob.TemplateFullStory":"true","specs.ob.med_fixScrollOnFocusAndroid":"true","specs.ob.retrySectionSolving":"true","specs.ob.passoverCleaning":"true","specs.ob.skipSetUpCacheByKit":"true","specs.ob.newDealerApi":"true","specs.ob.floatingColumns":"true","specs.ob.twoButtonSection":"true","specs.AdiCombineAutocompleteResults":"true","specs.abTranslate.site-generator-statics-consumer.tour.welcome2.step2000.title":"1","specs.ob.removeDuplicateSectionsInPage":"false","specs.ob.blog2":"true","specs.ob.predefinedHeaderLayout":"true","specs.ADIOnMobileEnabled":"true","specs.ob.subscribeInFooter":"true","specs.ob.newKitsRussianFonts":"true","specs.ob.med_mediaCatalogPrep":"false","specs.ob.useBeacon":"true","specs.ob.dataFixerReduceMediaBlob":"true","specs.ob.upgradeBanner":"true","specs.ob.skipSiteName":"true","specs.ob.santaCompleteColorPalette":"true","specs.StoryValidationInIndexEnabled":"true","specs.ob.contentPanelFirst":"false","specs.ob.cloneWithLodash":"true","specs.SnapshotCreationEnabled":"true","specs.ob.waas":"true","specs.ob.fedOpsReportPhases":"true","specs.ob.fpdta":"true","specs.AdiRandomOrder":"true","specs.ob.fpdOverStage":"true","specs.ob.refactorTpaConfig":"false","specs.abTranslate.site-generator-statics-consumer.tour.welcome2.step4000.button":"1","specs.wos.DisplayMusicManager":"true","specs.ob.wixEvents":"true","specs.ob.legalRights":"true","specs.ob.cardsToPanels":"true","specs.ob.invertTpaBlogWidget":"true","specs.ob.suggestDomain":"true","specs.wos.DisplayVideo":"true","specs.AdiAutoCompleteSynonymsEnabled":"false","specs.ob.changeBusinessDetails":"true","specs.ob.jsonpatch2":"true","specs.ob.med_supportGallery":"true","specs.ob.newIntroPlaceholders":"true","specs.ob.immediateViewer":"false","specs.wos.businessManagerPhase5":"true","specs.wos.businessManagerPhase4":"true"};
-    };
-
-    ADI.videoLoaderSrc = 'https://static.parastorage.com/services/adi-web/2.960.9/assets/videos/loader.mp4';
-    //measure time
-    (function (window) {
-      var totalTabVisibleTime, tabVisibleStartTime;
-
-      var visibilitychangeHandler = function visibilitychangeHandler() {
-        if (document.hidden) { // blur tab
-          totalTabVisibleTime += ADI.getTimestamp() - tabVisibleStartTime;
-        } else { // focus tab
-          tabVisibleStartTime = ADI.getTimestamp();
-        }
-      };
-
-      ADI.measureTimeInTab = {
-        start: function () {
-          totalTabVisibleTime = 0;
-          tabVisibleStartTime = !document.hidden && ADI.getTimestamp();
-          document.addEventListener('visibilitychange', visibilitychangeHandler);
-        },
-        end: function () {
-          document.removeEventListener('visibilitychange', visibilitychangeHandler);
-          if (!document.hidden) {
-            totalTabVisibleTime += ADI.getTimestamp() - tabVisibleStartTime;
-          }
-          return Math.round(totalTabVisibleTime);
-        }
-      };
-
-      ADI.measureTimeInTab.start();
-    })(window);
-  </script>
-  
-  <!--  -->
-
-  <script type="text/javascript">
-    (function (window) {
-      ADI.getParameterByName = function(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, '\\$&');
-        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, ' '));
-      }
-    })(window);
-
-    ADI.fixOrigin = function(url, forceHttps) {
-      if ((location.protocol === 'https:' || forceHttps) && url.indexOf('http:') === 0) {
-        url = 'https:' + url.substr('http:'.length);
-      }
-
-      if (url.indexOf('//') === 0) {
-        var protocol = forceHttps ? 'https:' : location.protocol;
-        return protocol + url;
-      }
-
-      if (url.indexOf('://www.') === -1) {
-        return url;
-      } else {
-        return url.replace(/:\/\/www\./g, '://' + window.location.host.substr(0, window.location.host.indexOf('.')) + '.');
-      }
-    };
-
-    /*  */
-  </script>
-
-  <link rel="stylesheet" href="https://static.parastorage.com/services/third-party/fonts/Helvetica/fontFace.css">
-
-  <link rel="stylesheet" href="https://static.parastorage.com/unpkg/angular-material@1.1.0-rc.5/angular-material.min.css">
-
-  <link rel="stylesheet" href="https://static.parastorage.com/services/adi-web/2.960.9/first-parties-css.min.css">
-  <link rel="stylesheet" href="https://static.parastorage.com/services/adi-web/2.960.9/fonts2-css.min.css">
-
-  <link rel="prerender" href="http://editor.wix.com/html/editor/web/renderer/prefetch_preview?ds=true">
-
-  <script type="text/javascript">
-    //fix cross domain issue
-    document.domain = window.location.hostname.split('.').slice(-2).join('.');
-
-    window.onerror = function() {
-      window.onerror.errors.push([].slice.call(arguments));
-    };
-    window.onerror.errors = [];
-  </script>
 </head>
-<body assistant-stop-on-escape ng-controller="AppCtrl as $ctrl" data-state="{{$ctrl.state}}"
-      ng-class="{'assistant-on': $ctrl.isAssistantOn, '-is-tpa': $ctrl.isTpa}" style="background: #fafafa;">
-  <!--  -->
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MDD5C4"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
 
-<app-main> <!-- Ui views didnt work in a template for some reason -->
-  <div class="content">
-    <builder></builder>
-    <div class="content-inner" ui-view="" state-class=""></div>
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav text-uppercase ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#team">Team</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="masthead">
+    <div class="container">
+      <div class="intro-text">
+        <div class="intro-lead-in">Welcome To Our Studio!</div>
+        <div class="intro-heading text-uppercase">It's Nice To Meet You</div>
+        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">Tell Me More</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Services</h2>
+          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">E-Commerce</h4>
+          <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+        </div>
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Responsive Design</h4>
+          <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+        </div>
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">Web Security</h4>
+          <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Grid -->
+  <section class="bg-light" id="portfolio">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Portfolio</h2>
+          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="img/portfolio/01-thumbnail.jpg" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Threads</h4>
+            <p class="text-muted">Illustration</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal2">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="img/portfolio/02-thumbnail.jpg" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Explore</h4>
+            <p class="text-muted">Graphic Design</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="img/portfolio/03-thumbnail.jpg" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Finish</h4>
+            <p class="text-muted">Identity</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal4">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="img/portfolio/04-thumbnail.jpg" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Lines</h4>
+            <p class="text-muted">Branding</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="img/portfolio/05-thumbnail.jpg" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Southwest</h4>
+            <p class="text-muted">Website Design</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 portfolio-item">
+          <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="img/portfolio/06-thumbnail.jpg" alt="">
+          </a>
+          <div class="portfolio-caption">
+            <h4>Window</h4>
+            <p class="text-muted">Photography</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">About</h2>
+          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <ul class="timeline">
+            <li>
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="img/about/1.jpg" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>2009-2011</h4>
+                  <h4 class="subheading">Our Humble Beginnings</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="img/about/2.jpg" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>March 2011</h4>
+                  <h4 class="subheading">An Agency is Born</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="img/about/3.jpg" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>December 2012</h4>
+                  <h4 class="subheading">Transition to Full Service</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <img class="rounded-circle img-fluid" src="img/about/4.jpg" alt="">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>July 2014</h4>
+                  <h4 class="subheading">Phase Two Expansion</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                </div>
+              </div>
+            </li>
+            <li class="timeline-inverted">
+              <div class="timeline-image">
+                <h4>Be Part
+                  <br>Of Our
+                  <br>Story!</h4>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="bg-light" id="team">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="img/team/1.jpg" alt="">
+            <h4>Kay Garland</h4>
+            <p class="text-muted">Lead Designer</p>
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="img/team/2.jpg" alt="">
+            <h4>Larry Parker</h4>
+            <p class="text-muted">Lead Marketer</p>
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="img/team/3.jpg" alt="">
+            <h4>Diana Pertersen</h4>
+            <p class="text-muted">Lead Developer</p>
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <a href="#">
+            <img class="img-fluid d-block mx-auto" src="img/logos/envato.jpg" alt="">
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <a href="#">
+            <img class="img-fluid d-block mx-auto" src="img/logos/designmodo.jpg" alt="">
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <a href="#">
+            <img class="img-fluid d-block mx-auto" src="img/logos/themeforest.jpg" alt="">
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <a href="#">
+            <img class="img-fluid d-block mx-auto" src="img/logos/creative-market.jpg" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Contact Us</h2>
+          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <form id="contactForm" name="sentMessage" novalidate="novalidate">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input class="form-control" id="name" type="text" placeholder="Your Name *" required="required" data-validation-required-message="Please enter your name.">
+                  <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" id="email" type="email" placeholder="Your Email *" required="required" data-validation-required-message="Please enter your email address.">
+                  <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" required="required" data-validation-required-message="Please enter your phone number.">
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <textarea class="form-control" id="message" placeholder="Your Message *" required="required" data-validation-required-message="Please enter a message."></textarea>
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-lg-12 text-center">
+                <div id="success"></div>
+                <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">Send Message</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <span class="copyright">Copyright &copy; Your Website 2019</span>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline social-buttons">
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline quicklinks">
+            <li class="list-inline-item">
+              <a href="#">Privacy Policy</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">Terms of Use</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Portfolio Modals -->
+
+  <!-- Modal 1 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Project Name</h2>
+                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                <img class="img-fluid d-block mx-auto" src="img/portfolio/01-full.jpg" alt="">
+                <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                <ul class="list-inline">
+                  <li>Date: January 2017</li>
+                  <li>Client: Threads</li>
+                  <li>Category: Illustration</li>
+                </ul>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close Project</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</app-main>
 
-<script src="https://media-manager.wix.com/media-frame.min.js"></script>
-<script src="https://static.parastorage.com/services/media-manager-api/1.170.0/MediaManagerApi.js" crossorigin="anonymous"></script>
-
-<!--  -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0Rix35PXdJPNLrhvZqUeWcJSDekqFkb8&libraries=places&language=en" async defer></script>
-<!--  -->
-
-<script src="https://static.parastorage.com/unpkg/jquery@2.2.4/dist/jquery.min.js" crossorigin="anonymous"></script>
-
-<script type="text/javascript">
-  (function (window) {
-    if (ADI.isTemplate) {
-      ADI.templateStoryId = ADI.getParameterByName('templateStoryId') || true;
-      var newUrl = location.href.replace(/&templateStoryId=[^&#]*|templateStoryId=[^&#]*&/, '')
-                                .replace(/templateSite=true(\/?)/, '')
-                                .replace('?&', '?').replace('&&', '&')
-                                .replace('&#', '#').replace('?#', '#');
-      history.replaceState({}, '', newUrl);
-
-      /**/
-      var loaderContainer = document.createElement('div');
-      loaderContainer.id = 'videoLoader';
-      loaderContainer.style.cssText = 'width: 100vw; height: 100vh; display: flex; justify-content: center; background: #fff;';
-      loaderContainer.innerHTML += '<video autoplay muted>' +
-          '<source src="https://d2x3xhvgiqkx42.cloudfront.net/12345678-1234-1234-1234-1234567890ab/c89028dc-062f-4fbf-a360-03018d49c998/2018/12/12/6cc94596-18f2-482d-96a8-838ded8d36b0.mp4" type="video/mp4" />' +
-        '</video>';
-      document.body.appendChild(loaderContainer);
-      document.body.classList.add('loading-site');
-      /* loadTemplateAsap  */
-    }
-
-    if (!ADI.siteId || window.location.href.indexOf('previewRevision=') >= 0 || ADI.isTemplate) {
-      return;
-    }
-
-    var storyId = ADI.siteId[1] + ':' + ADI.siteId[2];
-    var url = '/_api/onboarding-server-web/story/' + storyId;
-    url += '?cacheKiller=' + Date.now();
-    url += '&editorSessionId=6683c0cf-007e-4013-bf0f-d2493e4ef520';
-    ADI.storyCache = {};
-    ADI.storyCache[storyId] = $.get(url);
-  })(window);
-</script>
-
-<script type="text/javascript">
-  (function (window) {
-    var resApi, res;
-    if (typeof Promise !== 'undefined') {
-      window.resApiLoaded = new Promise(function (resolve, reject) {
-        resApi = resolve;
-      });
-
-      window.signalApiLoaded = function() {
-        resApi && resApi();
-      };
-
-      window.headlessReady = new Promise(function (resolve, reject) {
-        res = resolve;
-      });
-
-      window.signalHeadlessReady = function() {
-        res && res();
-      };
-    }
-  })(window);
-</script>
-
-<script src="https://www.google.com/recaptcha/api.js?onload=onLoadRecaptchaCallback&render=explicit" async defer></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/angular@1.5.11/angular.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/angular-i18n@1.5.11/angular-locale_en.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/angular-animate@1.5.11/angular-animate.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/lodash@4.17.11/lodash.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/pm-rpc@2.0.0/build/pm-rpc.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/angular-sanitize@1.5.11/angular-sanitize.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/angular-translate@2.17.0/dist/angular-translate.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/angular-aria@1.5.11/angular-aria.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/angular-messages@1.5.11/angular-messages.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/angular-material@1.1.0-rc.5/angular-material.min.js"></script>
-
-<script crossorigin="anonymous" src="//static.parastorage.com/services/site-generator-statics-metadata/1.540.0/scripts/scripts.js"></script>
-
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/es6-shim@0.35.3/es6-shim.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/@cgross/angular-notify@2.5.1/dist/angular-notify.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/angular-elastic@2.5.1/elastic.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/angular-local-storage@0.2.7/dist/angular-local-storage.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/angular-ui-tree@2.22.6/dist/angular-ui-tree.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/angular-ui-router@0.2.18/release/angular-ui-router.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/tinycolor2@1.4.1/dist/tinycolor-min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/color-thief@1.0.317"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/angularjs-color-picker@2.7.2/dist/angularjs-color-picker.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/angular-xeditable@0.1.12/dist/js/xeditable.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/angular-socialshare@2.3.11/dist/angular-socialshare.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/angular-drag-and-drop-lists@1.4.0/angular-drag-and-drop-lists.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/ng-sortable@1.3.7/dist/ng-sortable.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/gsap@1.20.4/Draggable.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/gsap@1.20.4/TweenMax.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/jquery-tooltipster@3.3.0/js/jquery.tooltipster.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/seedrandom@2.4.3/seedrandom.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/polymer-weakmap@0.0.0/weakmap.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/wix-angular@1.0.621/dist/wix-angular.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/wix-angular@1.0.621/dist/wix-angular-storage.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/jszip@2.6.1/dist/jszip.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/jszip-utils@0.0.2/dist/jszip-utils.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/@wix/wixmp-sdk@1.0.566/dist/wixmp-sdk.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/webfontloader@1.6.6/webfontloader.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/stackblur-canvas@1.4.1/dist/stackblur.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/t@0.5.1/t.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/axios@0.18.0/dist/axios.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/chroma-js@2.0.1/chroma.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/bluebird@2.11.0/js/browser/bluebird.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/@wix/wix-richtext@2.816.0/dist/NoUIBundleWixRichText.js"></script>
-<!--  -->
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/fast-json-patch@2.0.7/dist/fast-json-patch.min.js"></script>
-<!-- jsonpatch2  -->
-
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/react@16.6.3/umd/react.production.min.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/unpkg/react-dom@16.6.3/umd/react-dom.production.min.js"></script>
-
-<!--  -->
-
-<script crossorigin="anonymous" src="https://static.parastorage.com/services/adi-web/2.960.9/third-parties-clean-js.bundle.min.js"></script>
-
-<!--  -->
-<script crossorigin="anonymous" src="https://static.parastorage.com/services/adi-web/2.960.9/second-parties-js.bundle.min.js"></script>
-
-<!--  -->
-<script crossorigin="anonymous" src="https://static.parastorage.com/services/adi-web/2.960.9/intro-js.bundle.min.js"></script>
-<!-- noIntroForExisting  -->
-
-<script>
-  ADI.clientTopology = {
-    production: 'false' !== 'true',
-    staticsVersion: '2.960.9',
-    staticsUrl: 'https://static.parastorage.com/services/adi-web/2.960.9/',
-    staticBaseUrl: 'https://static.parastorage.com/',
-    experiments: ADI.getExperiments(),
-    siteMediaToken: (ADI.getMetadata() || {}).siteMediaToken,
-    mediaUrl: '//static.wixstatic.com/media',
-    videoUrl: 'https://video.wixstatic.com/',
-    filesBaseUrl: '//docs.wixstatic.com/',
-    editorBaseUrl: ADI.fixOrigin('http://editor.wix.com', false),
-    baseDomain: 'wix.com',
-    contentVersionNumber: '${contentVersionNumber}',
-    esi: '6683c0cf-007e-4013-bf0f-d2493e4ef520',
-    isWixStaff: false,
-    isAnonymous: false,
-    hasSession: true,
-    isImpersonatedUser: false,
-    isTemplatesUser: false,
-    schedulerBaseUrl: ADI.fixOrigin('http://scheduler.wix.com', false),
-    appsBaseUrl: 'https://apps.wix.com',
-    businessManagerBaseUrl: ADI.fixOrigin('https://wix.com/dashboard', false),
-    locale: 'en',
-    templateTranslationServerBaseUrl: '${clientTopology.templateTranslationUrl}',
-    mediaGalleryUrl: 'https://www.wix.com/_partials/media-gallery-g5/1.577.0/',
-    mediaManagerPartialsUrlG6: 'https://www.wix.com/_partials/media-manager-g6/1.225.0/'
-  };
-</script>
-
-<script crossorigin="anonymous" src="https://static.parastorage.com/services/adi-web/2.960.9/first-parties-js.bundle.min.js"></script>
-
-<script crossorigin="anonymous" src="https://static.parastorage.com/services/adi-web/2.960.9/assets/locale/messages_en.js"></script>
-
-<script crossorigin="anonymous" src="https://static.parastorage.com/services/adi-web/2.960.9/assets/common-controls/locale/messages_en.js"></script>
-<script crossorigin="anonymous" src="https://static.parastorage.com/services/adi-web/2.960.9/assets/organize-media/locale/messages_en.js"></script>
-
-<script>
-  angular.module('siteGeneratorCommon')
-    .constant('clientTopology', ADI.clientTopology)
-    .constant('metaDataBaseUrl', ADI.fixOrigin('//static.parastorage.com/services/site-generator-statics-metadata/1.540.0/', true))
-    .constant('metaDataUrl', '//static.parastorage.com/services/site-generator-statics-metadata/1.540.0/scripts')
-    .constant('metaDataVersion', '');
-</script>
-
-  <div class="svgs-icons-container"
-     style="position: absolute; z-index: -9999; width: 0; height: 0; top: -10000px; left: -10000px;">
-  <ng-include
-      src="'https://static.parastorage.com/services/adi-web/2.960.9/assets/common-controls/svg-sprites-complex/icons.sprite.svg'"></ng-include>
-    <ng-include
-      src="'https://static.parastorage.com/services/adi-web/2.960.9/assets/common-controls/svg-sprites/icons.sprite.svg'"></ng-include>
+  <!-- Modal 2 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Project Name</h2>
+                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                <img class="img-fluid d-block mx-auto" src="img/portfolio/02-full.jpg" alt="">
+                <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                <ul class="list-inline">
+                  <li>Date: January 2017</li>
+                  <li>Client: Explore</li>
+                  <li>Category: Graphic Design</li>
+                </ul>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close Project</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!--  -->
+  <!-- Modal 3 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Project Name</h2>
+                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                <img class="img-fluid d-block mx-auto" src="img/portfolio/03-full.jpg" alt="">
+                <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                <ul class="list-inline">
+                  <li>Date: January 2017</li>
+                  <li>Client: Finish</li>
+                  <li>Category: Identity</li>
+                </ul>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close Project</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <!--  -->
+  <!-- Modal 4 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Project Name</h2>
+                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                <img class="img-fluid d-block mx-auto" src="img/portfolio/04-full.jpg" alt="">
+                <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                <ul class="list-inline">
+                  <li>Date: January 2017</li>
+                  <li>Client: Lines</li>
+                  <li>Category: Branding</li>
+                </ul>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close Project</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <script>
-      ADI.lazyLoadCss = function(src) {
-        var flink = document.getElementsByTagName('link')[0];
-        var link = document.createElement('link');
-        link.rel='stylesheet'
-        link.href = src;
-        flink.parentNode.insertBefore(link, flink);
-      };
-  </script>
+  <!-- Modal 5 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Project Name</h2>
+                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                <img class="img-fluid d-block mx-auto" src="img/portfolio/05-full.jpg" alt="">
+                <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                <ul class="list-inline">
+                  <li>Date: January 2017</li>
+                  <li>Client: Southwest</li>
+                  <li>Category: Website Design</li>
+                </ul>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close Project</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <script>ADI.lazyLoadCss('https://static.parastorage.com/services/adi-web/2.960.9/third-parties-css.min.css');</script>
+  <!-- Modal 6 -->
+  <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase">Project Name</h2>
+                <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
+                <img class="img-fluid d-block mx-auto" src="img/portfolio/06-full.jpg" alt="">
+                <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                <ul class="list-inline">
+                  <li>Date: January 2017</li>
+                  <li>Client: Window</li>
+                  <li>Category: Photography</li>
+                </ul>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close Project</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Contact form JavaScript -->
+  <script src="js/jqBootstrapValidation.js"></script>
+  <script src="js/contact_me.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/agency.min.js"></script>
+
 </body>
+
 </html>
